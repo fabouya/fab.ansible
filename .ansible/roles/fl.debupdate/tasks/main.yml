@@ -1,0 +1,9 @@
+---
+# tasks file for fl.debupdate
+  
+  - name: APT UPDATE
+    become: true
+    environment:
+      http_proxy: http://192.168.4.60:3128/
+    apt:
+      update_cache: yes

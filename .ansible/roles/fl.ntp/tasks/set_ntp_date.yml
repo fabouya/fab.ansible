@@ -1,0 +1,38 @@
+---
+
+# restart ntp
+    - name: Stop NTP Debian 8 9
+      become: yes
+      command: systemctl stop ntp.service
+      when: (ansible_distribution == "Debian" and ansible_distribution_major_version >= "8")
+
+    - name: Stop NTP  Debian 7
+      become: yes
+      command: /etc/init.d/ntp stop
+      when: (ansible_distribution == "Debian" and ansible_distribution_major_version == "7")
+
+
+
+    - name: Get Date
+      become: yes
+      command: ntpdate 192.168.1.250
+
+    - name: config
+      become: yes
+      copy:
+        src: stdntp.conf
+        dest: /etc/ntp.conf
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Start NTP  Debian 8 9
+      become: yes
+      command: systemctl start ntp.service
+      when: (ansible_distribution == "Debian" and ansible_distribution_major_version >= "8")
+
+    - name: Start NTP  Debian 7
+      become: yes
+      command: /etc/init.d/ntp start
+      when: (ansible_distribution == "Debian" and ansible_distribution_major_version == "7")
+

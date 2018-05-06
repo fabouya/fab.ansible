@@ -1,0 +1,35 @@
+---
+- name: config
+
+  copy:
+      src: ntp.conf
+      dest: /etc/ntp.conf
+      owner: root
+      group: root
+      mode: 0644
+
+  notify:
+      - restart ntp
+
+- name: installed
+
+  apt:
+      name: ntp
+      state: latest
+
+  notify:
+      - restart ntp
+
+- name: enabled
+
+  systemd:
+      name: ntp
+      enabled: yes
+
+- name: started
+
+  systemd:
+      name: ntp
+      state: started
+
+  tags: live

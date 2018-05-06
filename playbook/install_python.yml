@@ -1,0 +1,11 @@
+---
+- hosts: debian
+  gather_facts: False
+  name: Install python
+  become: true
+
+  tasks:
+    - name: install python package debian
+      environment:
+        http_proxy: http://192.168.4.60:3128/
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)

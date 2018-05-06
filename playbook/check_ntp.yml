@@ -1,0 +1,10 @@
+---
+- hosts: debian
+
+  name: Check ntp
+  become: true
+
+  tasks:
+    - name: Check NTP debian
+      command: grep -i server /etc/ntp.conf
+ 

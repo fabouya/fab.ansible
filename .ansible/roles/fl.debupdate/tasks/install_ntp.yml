@@ -1,0 +1,38 @@
+---
+- hosts: all
+
+  name: Install ntp
+  become: true
+
+  tasks:
+    - name: install ntp package debian
+      environment:
+        http_proxy: http://192.168.4.60:3128/
+      apt:
+        name: ntp
+        state: present
+
+    - name: Install ntpdate
+      environment:
+        http_proxy: http://192.168.4.60:3128/
+      apt:
+        name: ntpdate
+        state: present
+
+    - name: Stop NTP
+      command: systemctl stop ntp.service
+
+    - name: Get Date
+      command: ntpdate 192.168.1.250
+
+
+    - name: config
+      copy:
+        src: files/stdntp.conf
+        dest: /etc/ntp.conf
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Start NTP
+      command: systemctl start ntp.service

@@ -1,0 +1,13 @@
+---
+- hosts: debian
+
+  name: Install sudo
+  become: true
+
+  tasks:
+    - name: install sudo package debian
+      environment:
+        http_proxy: http://192.168.4.60:3128/
+      apt:
+        name: sudo
+        state: present
