@@ -1,0 +1,6 @@
+---
+# defaults file for fl.sshkey
+#
+sshkey_clean: False
+ssh_user: root
+

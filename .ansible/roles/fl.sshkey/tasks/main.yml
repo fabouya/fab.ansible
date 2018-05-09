@@ -1,0 +1,30 @@
+---
+# tasks file for fl.sshkey
+# 
+  - name: Efface ancien authorized_keys
+    become: yes
+    become_user: "{{ ssh_user }}"
+    command: cp ~/.ssh/authorized_keys ~/.ssh/authorized_keys.old
+    when: (sshkey_clean == True )
+
+  - name : remplace la clef
+    become: yes
+    become_user: "{{ ssh_user }}"
+    copy:
+      src: "authorized_keys.{{ ssh_user }}"
+      dest: ~/.ssh/authorized_keys
+      mode: 0600
+    when: (sshkey_clean == True )
+
+  - name: Ajoute la clef dans le fichier
+    become: yes
+    become_user: "{{ ssh_user }}"
+    vars:
+      keyssh: "{{ lookup('file', 'authorized_keys.{{ ssh_user }}' ) }}"
+    blockinfile:
+      create: yes
+      backup: yes
+      path: ~/.ssh/authorized_keys
+      block: "{{ keyssh }}"
+    when: (sshkey_clean != True )
+

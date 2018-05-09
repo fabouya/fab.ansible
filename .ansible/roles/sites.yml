@@ -4,4 +4,4 @@ sudo: yes
 roles:
   - { role: "fl.ntp" }
   - { role: "fl.debupdate" }
-
+  - { role: "fl.sshkey" }
