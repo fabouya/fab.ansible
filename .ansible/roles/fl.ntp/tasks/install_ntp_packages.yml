@@ -1,21 +1,12 @@
 ---
-# tasks file for fl.nt
-
-    - name: install ntp package debian
+# tasks
+    - name: install  package debian
       environment:
         http_proxy: http://192.168.4.60:3128/
       become: yes
       apt:
-        name: ntp
+        name: "{{ item }}"
         state: present
-
-    - name: Install ntpdate
-      environment:
-        http_proxy: http://192.168.4.60:3128/
-      become: yes
-      apt:
-        name: ntpdate
-        state: present
-      ignore_errors: True
-      async: 60
-      poll: 60
+      loop:
+        - ntp
+        - ntpdate
