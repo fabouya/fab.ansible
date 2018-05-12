@@ -1,0 +1,8 @@
+---
+- hosts: test 
+  roles:
+  - fab.debsources
+
+- hosts: debian
+  roles:
+  - fab.debupdate

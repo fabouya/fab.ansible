@@ -1,2 +1,4 @@
 ---
 # defaults file for fl.ntp
+ntpserver: 192.168.1.250
+

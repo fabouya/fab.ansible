@@ -5,3 +5,6 @@ roles:
   - { role: "fl.ntp" }
   - { role: "fl.debupdate" }
   - { role: "fl.sshkey" }
+  - { role: "fab.debupdate" }
+  - { role: "fab.debsources" }
+
