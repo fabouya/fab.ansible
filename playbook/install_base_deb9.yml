@@ -3,3 +3,4 @@
   roles:
   - fab.debsources
   - fab.debupdate
+  - fab.debcommon

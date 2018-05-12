@@ -1,0 +1,6 @@
+---
+# tasks file for fab.debcommon
+
+# roles/example/tasks/main.yml
+  - import_tasks: common.debian.9.yml
+    when: (ansible_distribution|lower == "debian") and (ansible_distribution_major_version == "9")

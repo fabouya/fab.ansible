@@ -3,7 +3,6 @@
 
 # roles/example/tasks/main.yml
   - import_tasks: install_ntp_packages.yml
-  when: ansible_os_platform|lower == 'debian'
+    when: ansible_os_platform|lower == 'debian'
   - import_tasks: set_ntp_date.yml
-  when: ansible_os_platform|lower == 'debian'
-
+    when: ansible_os_platform|lower == 'debian'
