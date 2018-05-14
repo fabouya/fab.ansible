@@ -47,7 +47,7 @@ galaxy_info:
     - name: Debian
       versions:
       - all
-    -name: Ubuntu
+    - name: Ubuntu
       versions:
       - all
 
