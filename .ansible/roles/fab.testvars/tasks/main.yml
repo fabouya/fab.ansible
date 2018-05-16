@@ -1,0 +1,23 @@
+---
+# tasks file for fab.testvars
+
+  - name: test variable phase 1
+    become: yes
+    shell: ip -4 address | grep global | awk '{ print $2;}' | awk -F'/' '{ print $1;}'
+    register: ipvalue
+
+  - name : test variable phase 2
+    debug:
+      msg: "{{ ipvalue }}"
+
+  - name : test variable phase 3
+    debug:
+      msg: "{{ ipvalue.stdout_lines[0] }}"
+
+  - name: test variable phase 4 
+    shell: echo "{{ ipvalue.stdout }}" > /tmp/test1
+
+  - name: test variable phase 5
+    shell: cat /tmp/test1
+
+

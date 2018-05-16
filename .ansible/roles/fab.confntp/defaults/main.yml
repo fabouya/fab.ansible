@@ -1,0 +1,5 @@
+---
+# defaults file for fab.confntp
+ntpserver: ntp.fab.local
+timezone: Europe/Paris
+

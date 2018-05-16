@@ -7,4 +7,6 @@ roles:
   - { role: "fl.sshkey" }
   - { role: "fab.debupdate" }
   - { role: "fab.debsources" }
+  - { role: "fab.debcommon" }
+  - { role: "fab.confntp" }
 

@@ -1,0 +1,19 @@
+---
+# handlers file for fab.confntp
+
+  - name: stop ntp
+    service:
+      name: ntp
+      state: stopped
+    listen: "stop ntp"
+  - name: start ntp
+    become: yes
+    command: "/etc/init.d/ntp start"
+    listen: "start ntp"
+  - name: restart ntp
+    service:
+      name: ntp
+      enabled: yes
+      state: restarted
+    listen: "restart ntp"
+

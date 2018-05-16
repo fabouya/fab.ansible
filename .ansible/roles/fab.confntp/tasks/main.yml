@@ -1,0 +1,25 @@
+---
+# tasks file for fab.confntp
+    - name: Stop NTP Debian 8 9
+      become: yes
+      command: systemctl stop ntp.service
+
+    - name: set timezone 
+      timezone:
+        name: "{{ timezone }}"
+
+    - name: copy config
+      become: yes
+      template:
+        src: stdntp.conf
+        dest: /etc/ntp.conf
+        backup: yes
+        owner: root
+        group: root
+        mode: 0644
+#       mode: "u=rw,g=r,o=r"
+
+    - name: Get Date
+      become: yes
+      command: ntpdate "{{ ntpserver }}"
+      notify: start ntp

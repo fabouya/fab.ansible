@@ -1,0 +1,21 @@
+---
+# handlers file for fab.confntp
+
+  - name: stop ntp
+    service:
+      name: ntp
+      state: stopped
+    listen: "stop ntp"
+  - name: start ntp
+    service:
+      name: ntp
+      enabled: yes
+      state: started
+    listen: "start ntp"
+  - name: restart ntp
+    service:
+      name: ntp
+      enabled: yes
+      state: restarted
+    listen: "restart ntp"
+
