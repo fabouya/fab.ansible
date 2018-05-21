@@ -16,15 +16,28 @@
       mode: 0600
     when: (sshkey_clean == True )
 
+  - name: check user path
+    become: yes
+    shell: >
+            egrep "^{{ ssh_user }}:" /etc/passwd | awk -F: '{ print $6 }'
+    changed_when: false
+    register: userhome 
+    when: (sshkey_clean != True )
+
+  - name: debug path
+    become: yes
+    debug:
+      msg: "{{ userhome.stdout }}"
+    when: (sshkey_clean != True )
+
   - name: Ajoute la clef dans le fichier
     become: yes
-    become_user: "{{ ssh_user }}"
     vars:
       keyssh: "{{ lookup('file', 'authorized_keys.{{ ssh_user }}' ) }}"
     blockinfile:
       create: yes
       backup: yes
-      path: ~/.ssh/authorized_keys
+      path: "{{ userhome.stdout}}/.ssh/authorized_keys"
       block: "{{ keyssh }}"
     when: (sshkey_clean != True )
 

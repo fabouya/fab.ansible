@@ -13,3 +13,5 @@
         - ntpdate
         - python
         - python-simplejson
+        - apt-transport-https
+        - software-properties-common

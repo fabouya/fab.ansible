@@ -1,5 +1,5 @@
 ---
-- hosts: test 
+- hosts: debian9 
   roles:
   - fab.debsources
   - fab.debupdate
